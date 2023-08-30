@@ -23,14 +23,9 @@ const iframeSrc = computed(() => iframeOptions[selectedOption.value]);
 		</p>
 
 		<div class="portSwitcher">
-			<span v-for="option in iframeOptions" :key="option">
-				<input
-					type="radio"
-					:id="option"
-					:value="option"
-					v-model="selectedOption"
-				/>
-				<label :for="option">{{ iframeOptions[option] }}</label>
+			<span v-for="(option, key) in iframeOptions" :key="key">
+				<input type="radio" :id="key" :value="key" v-model="selectedOption" />
+				<label :for="key">{{ option }}</label>
 			</span>
 		</div>
 
