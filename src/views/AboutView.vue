@@ -5,8 +5,8 @@ import { computed, ref } from 'vue';
 const foo = useReceiver();
 
 const iframeOptions = {
-	5173: 'http://localhost:5173/caliper',
-	3715: 'http://localhost:3715/caliper',
+	5173: 'https://qqnmlr-5173.csb.app/caliper',
+	3715: 'https://89rl8z-5173.csb.app/caliper',
 };
 const selectedOption = ref(5173);
 const iframeSrc = computed(() => iframeOptions[selectedOption.value]);
