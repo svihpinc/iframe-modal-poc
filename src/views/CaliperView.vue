@@ -1,8 +1,14 @@
 <script setup>
 import useTransmitter from '@/composables/useTransmitter';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 const { foo, sendCustomEvent, sendPostMessage } = useTransmitter();
+
+const route = useRoute();
+const currentUrl = computed(
+	() => new URL(route.fullPath, window.location.origin).href,
+);
 
 onMounted(() => {
 	console.log('Caliper Mounted');
@@ -11,6 +17,8 @@ onMounted(() => {
 
 <template>
 	<div>
+		<h1>This is {{ currentUrl }}</h1>
+
 		<span
 			>Local Data = <span class="highlight">{{ foo }}</span></span
 		>
