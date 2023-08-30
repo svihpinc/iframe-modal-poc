@@ -4,13 +4,12 @@ import { computed, ref } from 'vue';
 
 const foo = useReceiver();
 
-function createIframeSrc(port) {
-	return `http://localhost:${port}/caliper`;
-}
-
-const iframePortOptions = [5173, 3715];
-const selectedPort = ref(iframePortOptions[0]);
-const iframeSrc = computed(() => createIframeSrc(selectedPort.value));
+const iframeOptions = {
+	5173: 'http://localhost:5173/caliper',
+	3715: 'http://localhost:3715/caliper',
+};
+const selectedOption = ref(5173);
+const iframeSrc = computed(() => iframeOptions[selectedOption.value]);
 </script>
 
 <template>
@@ -24,9 +23,14 @@ const iframeSrc = computed(() => createIframeSrc(selectedPort.value));
 		</p>
 
 		<div class="portSwitcher">
-			<span v-for="port in iframePortOptions" :key="port">
-				<input type="radio" :id="port" :value="port" v-model="selectedPort" />
-				<label :for="port">{{ port }}</label>
+			<span v-for="option in iframeOptions" :key="option">
+				<input
+					type="radio"
+					:id="option"
+					:value="option"
+					v-model="selectedOption"
+				/>
+				<label :for="option">{{ iframeOptions[option] }}</label>
 			</span>
 		</div>
 
